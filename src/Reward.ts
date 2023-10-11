@@ -16,10 +16,10 @@ import {
 } from "../generated/schema"
 
 export function handleAccrued(event: AccruedEvent): void {
-  let accrued = Accrued.load(event.transaction.hash.toString());
+  let accrued = Accrued.load(event.transaction.hash.toHexString());
   if (!accrued)
 {  let accrued = new Accrued(
-    event.transaction.hash.toString())
+    event.transaction.hash.toHexString())
   
   accrued.asset = event.params.asset
   accrued.reward = event.params.reward.toHexString()
@@ -48,7 +48,7 @@ export function handleAccrued(event: AccruedEvent): void {
 }
 
 export function handleAssetConfigUpdated(event: AssetConfigUpdatedEvent): void {
-  let entity = AssetConfigUpdated.load(event.transaction.hash.toString());
+  let entity = AssetConfigUpdated.load(event.transaction.hash.toHexString());
   if (!entity)
 {  let entity = new AssetConfigUpdated(
     event.transaction.hash.toHexString())
@@ -75,7 +75,7 @@ export function handleAssetConfigUpdated(event: AssetConfigUpdatedEvent): void {
 }
 
 export function handleClaimerSet(event: ClaimerSetEvent): void {
-  let entity = ClaimerSet.load(event.transaction.hash.toString());
+  let entity = ClaimerSet.load(event.transaction.hash.toHexString());
   if (!entity)
 {  let entity = new ClaimerSet(
     event.transaction.hash.toHexString()
@@ -97,7 +97,7 @@ export function handleClaimerSet(event: ClaimerSetEvent): void {
 }
 
 export function handleRewardsClaimed(event: RewardsClaimedEvent): void {
-  let entity = RewardsClaimed.load(event.transaction.hash.toString());
+  let entity = RewardsClaimed.load(event.transaction.hash.toHexString());
   if (!entity)
 {  let entity = new RewardsClaimed(
     event.transaction.hash.toHexString()
@@ -130,7 +130,7 @@ export function handleRewardsClaimed(event: RewardsClaimedEvent): void {
 export function handleTransferStrategyInstalled(
   event: TransferStrategyInstalledEvent
 ): void {
-  let entity = TransferStrategyInstalled.load(event.transaction.hash.toString());
+  let entity = TransferStrategyInstalled.load(event.transaction.hash.toHexString());
   if (!entity)
 {  let entity = new TransferStrategyInstalled(
     event.transaction.hash.toHexString()

@@ -8,7 +8,7 @@ dataSources:
     source:
       address: "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2"
       abi: Pool
-      startBlock: 0
+      startBlock: 16291127
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -61,7 +61,7 @@ dataSources:
     source:
       address: "0x8164Cc65827dcFe994AB23944CBC90e0aa80bFcb"
       abi: Reward
-      startBlock: 0
+      startBlock: 16291136
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7

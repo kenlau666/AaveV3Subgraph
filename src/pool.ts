@@ -27,9 +27,9 @@ import {
 } from "../generated/schema"
 
 export function handleBackUnbacked(event: BackUnbackedEvent): void {
-  let backUnbacked = BackUnbacked.load(event.transaction.hash.toString());
+  let backUnbacked = BackUnbacked.load(event.transaction.hash.toHexString());
   if (!backUnbacked){  
-    let backUnbacked = new BackUnbacked(event.transaction.hash.toString());
+    let backUnbacked = new BackUnbacked(event.transaction.hash.toHexString());
     backUnbacked.reserve = event.params.reserve
     backUnbacked.backer = event.params.backer.toHexString()
     backUnbacked.amount = event.params.amount
@@ -50,10 +50,10 @@ export function handleBackUnbacked(event: BackUnbackedEvent): void {
 }
 
 export function handleBorrow(event: BorrowEvent): void {
-  let borrow = Borrow.load(event.transaction.hash.toString());
+  let borrow = Borrow.load(event.transaction.hash.toHexString());
   if (!borrow){  
     let borrow = new Borrow(
-      event.transaction.hash.toString()
+      event.transaction.hash.toHexString()
     )
   
     borrow.reserve = event.params.reserve
@@ -80,10 +80,10 @@ export function handleBorrow(event: BorrowEvent): void {
 }
 
 export function handleFlashLoan(event: FlashLoanEvent): void {
-  let entity = FlashLoan.load(event.transaction.hash.toString());
+  let entity = FlashLoan.load(event.transaction.hash.toHexString());
   if (!entity){   
     let entity = new FlashLoan(
-      event.transaction.hash.toString()
+      event.transaction.hash.toHexString()
     )
     entity.target = event.params.target
     entity.initiator = event.params.initiator.toHexString()
@@ -108,10 +108,10 @@ export function handleFlashLoan(event: FlashLoanEvent): void {
 }
 
 export function handleLiquidationCall(event: LiquidationCallEvent): void {
-  let entity = LiquidationCall.load(event.transaction.hash.toString());
+  let entity = LiquidationCall.load(event.transaction.hash.toHexString());
   if (!entity){   
     let entity = new LiquidationCall(
-      event.transaction.hash.toString()
+      event.transaction.hash.toHexString()
     )
     entity.collateralAsset = event.params.collateralAsset
     entity.debtAsset = event.params.debtAsset
@@ -136,10 +136,10 @@ export function handleLiquidationCall(event: LiquidationCallEvent): void {
 }
 
 export function handleMintUnbacked(event: MintUnbackedEvent): void {
-  let entity = MintUnbacked.load(event.transaction.hash.toString());
+  let entity = MintUnbacked.load(event.transaction.hash.toHexString());
   if (!entity){   
     let entity = new MintUnbacked(
-      event.transaction.hash.toString()
+      event.transaction.hash.toHexString()
     )
     entity.reserve = event.params.reserve
     entity.user = event.params.user.toHexString()
@@ -166,10 +166,10 @@ export function handleMintUnbacked(event: MintUnbackedEvent): void {
 export function handleRebalanceStableBorrowRate(
   event: RebalanceStableBorrowRateEvent
 ): void {
-  let entity = RebalanceStableBorrowRate.load(event.transaction.hash.toString());
+  let entity = RebalanceStableBorrowRate.load(event.transaction.hash.toHexString());
   if (!entity){   
     let entity = new RebalanceStableBorrowRate(
-      event.transaction.hash.toString()
+      event.transaction.hash.toHexString()
     )
     entity.reserve = event.params.reserve
     entity.user = event.params.user.toHexString()
@@ -189,10 +189,10 @@ export function handleRebalanceStableBorrowRate(
 }
 
 export function handleRepay(event: RepayEvent): void {
-  let entity = Repay.load(event.transaction.hash.toString());
+  let entity = Repay.load(event.transaction.hash.toHexString());
   if (!entity){   
     let entity = new Repay(
-      event.transaction.hash.toString()
+      event.transaction.hash.toHexString()
     )
     entity.reserve = event.params.reserve
     entity.user = event.params.user.toHexString()
@@ -215,10 +215,10 @@ export function handleRepay(event: RepayEvent): void {
 }
 
 export function handleSupply(event: SupplyEvent): void {
-  let entity = Supply.load(event.transaction.hash.toString());
+  let entity = Supply.load(event.transaction.hash.toHexString());
   if (!entity){   
     let entity = new Supply(
-      event.transaction.hash.toString()
+      event.transaction.hash.toHexString()
     )
     entity.reserve = event.params.reserve
     entity.user = event.params.user.toHexString()
@@ -241,10 +241,10 @@ export function handleSupply(event: SupplyEvent): void {
 }
 
 export function handleSwapBorrowRateMode(event: SwapBorrowRateModeEvent): void {
-  let entity = SwapBorrowRateMode.load(event.transaction.hash.toString());
+  let entity = SwapBorrowRateMode.load(event.transaction.hash.toHexString());
   if (!entity){   
     let entity = new SwapBorrowRateMode(
-      event.transaction.hash.toString()
+      event.transaction.hash.toHexString()
     )
     entity.reserve = event.params.reserve
     entity.user = event.params.user.toHexString()
@@ -265,10 +265,10 @@ export function handleSwapBorrowRateMode(event: SwapBorrowRateModeEvent): void {
 }
 
 export function handleUserEModeSet(event: UserEModeSetEvent): void {
-  let entity = UserEModeSet.load(event.transaction.hash.toString());
+  let entity = UserEModeSet.load(event.transaction.hash.toHexString());
   if (!entity){   
     let entity = new UserEModeSet(
-      event.transaction.hash.toString()
+      event.transaction.hash.toHexString()
     )
     entity.user = event.params.user.toHexString()
     entity.categoryId = event.params.categoryId
@@ -288,10 +288,10 @@ export function handleUserEModeSet(event: UserEModeSetEvent): void {
 }
 
 export function handleWithdraw(event: WithdrawEvent): void {
-  let entity = Withdraw.load(event.transaction.hash.toString());
+  let entity = Withdraw.load(event.transaction.hash.toHexString());
   if (!entity){   
     let entity = new Withdraw(
-      event.transaction.hash.toString()
+      event.transaction.hash.toHexString()
     )
     entity.reserve = event.params.reserve
     entity.user = event.params.user.toHexString()
