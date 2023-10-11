@@ -45,6 +45,7 @@ export function handleBackUnbacked(event: BackUnbackedEvent): void {
   let user = User.load(event.params.backer.toHexString());
   if (!user) {
     user = new User(event.params.backer.toHexString());
+    user.address = event.params.backer;
     user.save();
   }
 }
@@ -75,6 +76,7 @@ export function handleBorrow(event: BorrowEvent): void {
   let user = User.load(event.params.user.toHexString());
   if (!user) {
     user = new User(event.params.user.toHexString());
+    user.address = event.params.user;
     user.save();
   }
 }
@@ -103,6 +105,7 @@ export function handleFlashLoan(event: FlashLoanEvent): void {
   let user = User.load(event.params.initiator.toHexString());
   if (!user) {
     user = new User(event.params.initiator.toHexString());
+    user.address = event.params.initiator;
     user.save();
   }
 }
@@ -131,6 +134,7 @@ export function handleLiquidationCall(event: LiquidationCallEvent): void {
   let user = User.load(event.params.user.toHexString());
   if (!user) {
     user = new User(event.params.user.toHexString());
+    user.address = event.params.user;
     user.save();
   }
 }
@@ -152,13 +156,12 @@ export function handleMintUnbacked(event: MintUnbackedEvent): void {
     entity.transactionHash = event.transaction.hash
   
     entity.save()
-
-    entity.save()
   }
 
   let user = User.load(event.params.user.toHexString());
   if (!user) {
     user = new User(event.params.user.toHexString());
+    user.address = event.params.user;
     user.save();
   }
 }
@@ -184,6 +187,7 @@ export function handleRebalanceStableBorrowRate(
   let user = User.load(event.params.user.toHexString());
   if (!user) {
     user = new User(event.params.user.toHexString());
+    user.address = event.params.user;
     user.save();
   }
 }
@@ -210,6 +214,7 @@ export function handleRepay(event: RepayEvent): void {
   let user = User.load(event.params.user.toHexString());
   if (!user) {
     user = new User(event.params.user.toHexString());
+    user.address = event.params.user;
     user.save();
   }
 }
@@ -236,6 +241,7 @@ export function handleSupply(event: SupplyEvent): void {
   let user = User.load(event.params.user.toHexString());
   if (!user) {
     user = new User(event.params.user.toHexString());
+    user.address = event.params.user;
     user.save();
   }
 }
@@ -260,6 +266,7 @@ export function handleSwapBorrowRateMode(event: SwapBorrowRateModeEvent): void {
   let user = User.load(event.params.user.toHexString());
   if (!user) {
     user = new User(event.params.user.toHexString());
+    user.address = event.params.user;
     user.save();
   }
 }
@@ -283,6 +290,7 @@ export function handleUserEModeSet(event: UserEModeSetEvent): void {
   let user = User.load(event.params.user.toHexString());
   if (!user) {
     user = new User(event.params.user.toHexString());
+    user.address = event.params.user;
     user.save();
   }
 }
@@ -308,6 +316,7 @@ export function handleWithdraw(event: WithdrawEvent): void {
   let user = User.load(event.params.user.toHexString());
   if (!user) {
     user = new User(event.params.user.toHexString());
+    user.address = event.params.user;
     user.save();
   }
 }

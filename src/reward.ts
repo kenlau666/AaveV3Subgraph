@@ -37,12 +37,14 @@ export function handleAccrued(event: AccruedEvent): void {
   let user = User.load(event.params.user.toHexString());
   if (!user) {
     user = new User(event.params.user.toHexString());
+    user.address = event.params.user;
     user.save();
   }
 
   let reward = Reward.load(event.params.reward.toHexString());
   if (!reward) {
     reward = new Reward(event.params.reward.toHexString());
+    reward.address = event.params.reward;
     reward.save();
   }
 }
@@ -70,6 +72,7 @@ export function handleAssetConfigUpdated(event: AssetConfigUpdatedEvent): void {
   let reward = Reward.load(event.params.reward.toHexString());
   if (!reward) {
     reward = new Reward(event.params.reward.toHexString());
+    reward.address = event.params.reward;
     reward.save();
   }
 }
@@ -92,6 +95,7 @@ export function handleClaimerSet(event: ClaimerSetEvent): void {
   let user = User.load(event.params.user.toHexString());
   if (!user) {
     user = new User(event.params.user.toHexString());
+    user.address = event.params.user;
     user.save();
   }
 }
@@ -117,12 +121,14 @@ export function handleRewardsClaimed(event: RewardsClaimedEvent): void {
   let user = User.load(event.params.user.toHexString());
   if (!user) {
     user = new User(event.params.user.toHexString());
+    user.address = event.params.user;
     user.save();
   }
 
   let reward = Reward.load(event.params.reward.toHexString());
   if (!reward) {
     reward = new Reward(event.params.reward.toHexString());
+    reward.address = event.params.reward;
     reward.save();
   }
 }
@@ -147,6 +153,7 @@ export function handleTransferStrategyInstalled(
   let reward = Reward.load(event.params.reward.toHexString());
   if (!reward) {
     reward = new Reward(event.params.reward.toHexString());
+    reward.address = event.params.reward;
     reward.save();
   }
 }
