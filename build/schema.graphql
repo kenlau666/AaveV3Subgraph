@@ -1,0 +1,243 @@
+type User @entity {
+  id: Bytes!
+  address: Bytes!
+  supplyHistory: [Supply!]! @derivedFrom(field: "user")
+  mintUnbackedHistory: [MintUnbacked!]! @derivedFrom(field: "user")
+  backUnbackedHistory: [BackUnbacked!]! @derivedFrom(field: "backer")
+  userEmodeSetHistory: [UserEModeSet!]! @derivedFrom(field: "user")
+  swapBorrowRateMode: [SwapBorrowRateMode!]! @derivedFrom(field: "user")
+  rebalanceStableBorrowRateHistory: [RebalanceStableBorrowRate!]! @derivedFrom(field: "user")
+  borrowHistory: [Borrow!]! @derivedFrom(field: "user")
+  repayHistory: [Repay!]! @derivedFrom(field: "user")
+  withdraw: [Withdraw!]! @derivedFrom(field: "user")
+  liquidationCallHistory: [LiquidationCall!]! @derivedFrom(field: "user")
+  flashLoanHistory: [FlashLoan!]! @derivedFrom(field: "initiator") 
+  accruedHistory: [Accrued!]! @derivedFrom(field: "user")
+  claimRewards: [RewardsClaimed!]! @derivedFrom(field: "user")
+}
+
+type BackUnbacked @entity {
+  id: Bytes!
+  reserve: Bytes! # address
+  backer: User! # address
+  amount: BigInt! # uint256
+  fee: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Borrow @entity {
+  id: Bytes!
+  reserve: Bytes! # address
+  user: User! # address
+  onBehalfOf: Bytes! # address
+  amount: BigInt! # uint256
+  interestRateMode: Int! # uint8
+  borrowRate: BigInt! # uint256
+  referralCode: Int! # uint16
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type FlashLoan @entity {
+  id: Bytes!
+  target: Bytes! # address
+  initiator: User! # address
+  asset: Bytes! # address
+  amount: BigInt! # uint256
+  interestRateMode: Int! # uint8
+  premium: BigInt! # uint256
+  referralCode: Int! # uint16
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type LiquidationCall @entity {
+  id: Bytes!
+  collateralAsset: Bytes! # address
+  debtAsset: Bytes! # address
+  user: User! # address
+  debtToCover: BigInt! # uint256
+  liquidatedCollateralAmount: BigInt! # uint256
+  liquidator: Bytes! # address
+  receiveAToken: Boolean! # bool
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type MintUnbacked @entity {
+  id: Bytes!
+  reserve: Bytes! # address
+  user: User! # address
+  onBehalfOf: Bytes! # address
+  amount: BigInt! # uint256
+  referralCode: Int! # uint16
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type RebalanceStableBorrowRate @entity {
+  id: Bytes!
+  reserve: Bytes! # address
+  user: User! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Repay @entity {
+  id: Bytes!
+  reserve: Bytes! # address
+  user: User! # address
+  repayer: Bytes! # address
+  amount: BigInt! # uint256
+  useATokens: Boolean! # bool
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ReserveDataUpdated @entity {
+  id: Bytes!
+  reserve: Bytes! # address
+  liquidityRate: BigInt! # uint256
+  stableBorrowRate: BigInt! # uint256
+  variableBorrowRate: BigInt! # uint256
+  liquidityIndex: BigInt! # uint256
+  variableBorrowIndex: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ReserveUsedAsCollateralDisabled @entity {
+  id: Bytes!
+  reserve: Bytes! # address
+  user: User! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ReserveUsedAsCollateralEnabled @entity {
+  id: Bytes!
+  reserve: Bytes! # address
+  user: User! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Supply @entity {
+  id: Bytes!
+  reserve: Bytes! # address
+  user: User! # address
+  onBehalfOf: Bytes! # address
+  amount: BigInt! # uint256
+  referralCode: Int! # uint16
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type SwapBorrowRateMode @entity {
+  id: Bytes!
+  reserve: Bytes! # address
+  user: User! # address
+  interestRateMode: Int! # uint8
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type UserEModeSet @entity {
+  id: Bytes!
+  user: User! # address
+  categoryId: Int! # uint8
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Withdraw @entity {
+  id: Bytes!
+  reserve: Bytes! # address
+  user: User! # address
+  to: Bytes! # address
+  amount: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+
+type Reward @entity {
+  id: Bytes!
+  address: Bytes!
+  accruedHistory: [Accrued!]! @derivedFrom (field: "reward")
+  assetConfigUpdatedHistory: [AssetConfigUpdated!]! @derivedFrom (field: "reward")
+  rewardsClaimed: [RewardsClaimed!]! @derivedFrom (field: "reward")
+  transferStrategyInstalledHistory: [TransferStrategyInstalled!]! @derivedFrom (field: "reward")
+}
+
+type Accrued @entity {
+  id: Bytes!
+  asset: Bytes! # address
+  reward: Reward! # address
+  user: User! # address
+  assetIndex: BigInt! # uint256
+  userIndex: BigInt! # uint256
+  rewardsAccrued: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type AssetConfigUpdated @entity {
+  id: Bytes!
+  asset: Bytes! # address
+  reward: Reward! # address
+  oldEmission: BigInt! # uint256
+  newEmission: BigInt! # uint256
+  oldDistributionEnd: BigInt! # uint256
+  newDistributionEnd: BigInt! # uint256
+  assetIndex: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ClaimerSet @entity {
+  id: Bytes!
+  user: User! # address
+  claimer: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type RewardsClaimed @entity {
+  id: Bytes!
+  user: User! # address
+  reward: Reward! # address
+  to: Bytes! # address
+  claimer: Bytes! # address
+  amount: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type TransferStrategyInstalled @entity {
+  id: Bytes!
+  reward: Reward! # address
+  transferStrategy: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
