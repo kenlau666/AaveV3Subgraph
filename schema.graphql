@@ -1,5 +1,5 @@
 type User @entity {
-  id: Bytes!
+  id: ID!
   address: Bytes!
   supplyHistory: [Supply!]! @derivedFrom(field: "user")
   mintUnbackedHistory: [MintUnbacked!]! @derivedFrom(field: "user")
@@ -17,7 +17,7 @@ type User @entity {
 }
 
 type BackUnbacked @entity {
-  id: Bytes!
+  id: ID!
   reserve: Bytes! # address
   backer: User! # address
   amount: BigInt! # uint256
@@ -28,7 +28,7 @@ type BackUnbacked @entity {
 }
 
 type Borrow @entity {
-  id: Bytes!
+  id: ID!
   reserve: Bytes! # address
   user: User! # address
   onBehalfOf: Bytes! # address
@@ -42,7 +42,7 @@ type Borrow @entity {
 }
 
 type FlashLoan @entity {
-  id: Bytes!
+  id: ID!
   target: Bytes! # address
   initiator: User! # address
   asset: Bytes! # address
@@ -56,7 +56,7 @@ type FlashLoan @entity {
 }
 
 type LiquidationCall @entity {
-  id: Bytes!
+  id: ID!
   collateralAsset: Bytes! # address
   debtAsset: Bytes! # address
   user: User! # address
@@ -70,7 +70,7 @@ type LiquidationCall @entity {
 }
 
 type MintUnbacked @entity {
-  id: Bytes!
+  id: ID!
   reserve: Bytes! # address
   user: User! # address
   onBehalfOf: Bytes! # address
@@ -82,7 +82,7 @@ type MintUnbacked @entity {
 }
 
 type RebalanceStableBorrowRate @entity {
-  id: Bytes!
+  id: ID!
   reserve: Bytes! # address
   user: User! # address
   blockNumber: BigInt!
@@ -91,7 +91,7 @@ type RebalanceStableBorrowRate @entity {
 }
 
 type Repay @entity {
-  id: Bytes!
+  id: ID!
   reserve: Bytes! # address
   user: User! # address
   repayer: Bytes! # address
@@ -103,7 +103,7 @@ type Repay @entity {
 }
 
 type ReserveDataUpdated @entity {
-  id: Bytes!
+  id: ID!
   reserve: Bytes! # address
   liquidityRate: BigInt! # uint256
   stableBorrowRate: BigInt! # uint256
@@ -116,7 +116,7 @@ type ReserveDataUpdated @entity {
 }
 
 type ReserveUsedAsCollateralDisabled @entity {
-  id: Bytes!
+  id: ID!
   reserve: Bytes! # address
   user: User! # address
   blockNumber: BigInt!
@@ -125,7 +125,7 @@ type ReserveUsedAsCollateralDisabled @entity {
 }
 
 type ReserveUsedAsCollateralEnabled @entity {
-  id: Bytes!
+  id: ID!
   reserve: Bytes! # address
   user: User! # address
   blockNumber: BigInt!
@@ -134,7 +134,7 @@ type ReserveUsedAsCollateralEnabled @entity {
 }
 
 type Supply @entity {
-  id: Bytes!
+  id: ID!
   reserve: Bytes! # address
   user: User! # address
   onBehalfOf: Bytes! # address
@@ -146,7 +146,7 @@ type Supply @entity {
 }
 
 type SwapBorrowRateMode @entity {
-  id: Bytes!
+  id: ID!
   reserve: Bytes! # address
   user: User! # address
   interestRateMode: Int! # uint8
@@ -156,7 +156,7 @@ type SwapBorrowRateMode @entity {
 }
 
 type UserEModeSet @entity {
-  id: Bytes!
+  id: ID!
   user: User! # address
   categoryId: Int! # uint8
   blockNumber: BigInt!
@@ -165,7 +165,7 @@ type UserEModeSet @entity {
 }
 
 type Withdraw @entity {
-  id: Bytes!
+  id: ID!
   reserve: Bytes! # address
   user: User! # address
   to: Bytes! # address
@@ -177,7 +177,7 @@ type Withdraw @entity {
 
 
 type Reward @entity {
-  id: Bytes!
+  id: ID!
   address: Bytes!
   accruedHistory: [Accrued!]! @derivedFrom (field: "reward")
   assetConfigUpdatedHistory: [AssetConfigUpdated!]! @derivedFrom (field: "reward")
@@ -186,7 +186,7 @@ type Reward @entity {
 }
 
 type Accrued @entity {
-  id: Bytes!
+  id: ID!
   asset: Bytes! # address
   reward: Reward! # address
   user: User! # address
@@ -199,7 +199,7 @@ type Accrued @entity {
 }
 
 type AssetConfigUpdated @entity {
-  id: Bytes!
+  id: ID!
   asset: Bytes! # address
   reward: Reward! # address
   oldEmission: BigInt! # uint256
@@ -213,7 +213,7 @@ type AssetConfigUpdated @entity {
 }
 
 type ClaimerSet @entity {
-  id: Bytes!
+  id: ID!
   user: User! # address
   claimer: Bytes! # address
   blockNumber: BigInt!
@@ -222,7 +222,7 @@ type ClaimerSet @entity {
 }
 
 type RewardsClaimed @entity {
-  id: Bytes!
+  id: ID!
   user: User! # address
   reward: Reward! # address
   to: Bytes! # address
@@ -234,7 +234,7 @@ type RewardsClaimed @entity {
 }
 
 type TransferStrategyInstalled @entity {
-  id: Bytes!
+  id: ID!
   reward: Reward! # address
   transferStrategy: Bytes! # address
   blockNumber: BigInt!

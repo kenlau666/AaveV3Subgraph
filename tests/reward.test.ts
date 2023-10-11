@@ -9,7 +9,7 @@ import {
 import { Address, BigInt } from "@graphprotocol/graph-ts"
 import { Accrued } from "../generated/schema"
 import { Accrued as AccruedEvent } from "../generated/Reward/Reward"
-import { handleAccrued } from "../src/Reward"
+import { handleAccrued } from "../src/reward"
 import { createAccruedEvent } from "./reward-utils"
 
 // Tests structure (matchstick-as >=0.5.0)
