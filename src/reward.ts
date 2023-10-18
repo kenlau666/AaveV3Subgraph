@@ -100,20 +100,20 @@ export function handleClaimerSet(event: ClaimerSetEvent): void {
 }
 
 export function handleRewardsClaimed(event: RewardsClaimedEvent): void {
-  let entity = RewardsClaimed.load(event.transaction.hash.toHexString());
-  if (!entity) {
-    let entity = new RewardsClaimed(event.transaction.hash.toHexString());
-    entity.user = event.params.user.toHexString();
-    entity.reward = event.params.reward.toHexString();
-    entity.to = event.params.to;
-    entity.claimer = event.params.claimer;
-    entity.amount = event.params.amount;
+  let rewardsClaimed = RewardsClaimed.load(event.transaction.hash.toHexString());
+  if (!rewardsClaimed) {
+    let rewardsClaimed = new RewardsClaimed(event.transaction.hash.toHexString());
+    rewardsClaimed.user = event.params.user.toHexString();
+    rewardsClaimed.reward = event.params.reward.toHexString();
+    rewardsClaimed.to = event.params.to;
+    rewardsClaimed.claimer = event.params.claimer;
+    rewardsClaimed.amount = event.params.amount;
 
-    entity.blockNumber = event.block.number;
-    entity.blockTimestamp = event.block.timestamp;
-    entity.transactionHash = event.transaction.hash;
+    rewardsClaimed.blockNumber = event.block.number;
+    rewardsClaimed.blockTimestamp = event.block.timestamp;
+    rewardsClaimed.transactionHash = event.transaction.hash;
 
-    entity.save();
+    rewardsClaimed.save();
   }
 
   let user = User.load(event.params.user.toHexString());
